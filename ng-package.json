@@ -1,0 +1,21 @@
+{
+	"$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+	"lib": {
+		"entryFile": "public_api.ts",
+		"umdModuleIds": {
+			"thaw-common-utilities.ts": "thaw-common-utilities.ts"
+		}
+	},
+	"whitelistedNonPeerDependencies": [
+		"@angular/common",
+		"@angular/compiler",
+		"@angular/core",
+		"@angular/forms",
+		"@angular/localize",
+		"@angular/platform-browser",
+		"@angular/router",
+		"rxjs",
+		"thaw-common-utilities.ts",
+		"zone.js"
+	]
+}
