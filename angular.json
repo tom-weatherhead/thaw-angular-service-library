@@ -17,14 +17,13 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/thaw-angular-service-library",
+						"outputPath": "dist",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "tsconfig.app.json",
 						"aot": true,
 						"assets": [
-							"src/favicon.ico",
 							"src/assets"
 						],
 						"styles": [
@@ -33,32 +32,37 @@
 						"scripts": []
 					},
 					"configurations": {
-						"production": {
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
-								}
-							],
-							"optimization": true,
+						"dev": {
+							"optimization": false,
 							"outputHashing": "all",
-							"sourceMap": false,
-							"extractCss": true,
+							"sourceMap": true,
+							"extractCss": false,
 							"namedChunks": false,
 							"aot": true,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"buildOptimizer": true,
-							"budgets": [
+							"buildOptimizer": false,
+							"fileReplacements": [
 								{
-									"type": "initial",
-									"maximumWarning": "2mb",
-									"maximumError": "5mb"
-								},
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
+							]
+						},
+						"production": {
+							"optimization": false,
+							"outputHashing": "all",
+							"sourceMap": false,
+							"extractCss": false,
+							"namedChunks": false,
+							"aot": true,
+							"extractLicenses": true,
+							"vendorChunk": false,
+							"buildOptimizer": false,
+							"fileReplacements": [
 								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "6kb",
-									"maximumError": "10kb"
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
 								}
 							]
 						}
@@ -89,7 +93,6 @@
 						"tsConfig": "tsconfig.spec.json",
 						"karmaConfig": "karma.conf.js",
 						"assets": [
-							"src/favicon.ico",
 							"src/assets"
 						],
 						"styles": [
@@ -105,7 +108,7 @@
 						"tsConfig": [
 							"tsconfig.app.json",
 							"tsconfig.spec.json",
-							"e2e/tsconfig.json"
+							"e2e/tsconfig.e2e.json"
 						],
 						"exclude": [
 							"**/node_modules/**"
@@ -122,6 +125,21 @@
 						"production": {
 							"devServerTarget": "thaw-angular-service-library:serve:production"
 						}
+					}
+				}
+			}
+		},
+		"thaw-angular-service-library-e2e": {
+			"root": "e2e",
+			"projectType": "application",
+			"architect": {
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"eslintConfig": ".eslintrc",
+						"lintFilePatterns": [
+							"e2e/**.ts"
+						]
 					}
 				}
 			}
