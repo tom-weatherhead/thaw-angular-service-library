@@ -40,8 +40,6 @@ describe('HttpJsonClientService', () => {
 	it('should fail when making an intentional error', inject(
 		[HttpJsonClientService],
 		async (service: HttpJsonClientService) => {
-			// expect.assertions(4);
-
 			expect(service).toBeTruthy();
 
 			const result = await service
@@ -49,10 +47,6 @@ describe('HttpJsonClientService', () => {
 				.pipe(catchError((error: any) => of(error)))
 				.toPromise();
 
-			// console.log(
-			// 	'HttpJsonClientService.getHttpResponse() result:',
-			// 	result
-			// );
 			expect(result).toBeTruthy();
 			expect(result.ok).toBeFalsy();
 			expect(result.status).toBe(404);
