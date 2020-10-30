@@ -6,6 +6,11 @@ import { catchError } from 'rxjs/operators';
 
 import { HttpJsonClientService } from './http-json-client.service';
 
+interface IHTTPGetResponse {
+	ok: boolean;
+	status: number;
+}
+
 describe('HttpJsonClientService', () => {
 	beforeEach(() =>
 		TestBed.configureTestingModule({
@@ -42,10 +47,10 @@ describe('HttpJsonClientService', () => {
 		async (service: HttpJsonClientService) => {
 			expect(service).toBeTruthy();
 
-			const result = await service
+			const result = (await service
 				.getHttpResponse('not/a/real/url')
-				.pipe(catchError((error: any) => of(error)))
-				.toPromise();
+				.pipe(catchError((error: Error) => of(error)))
+				.toPromise()) as IHTTPGetResponse;
 
 			expect(result).toBeTruthy();
 			expect(result.ok).toBeFalsy();

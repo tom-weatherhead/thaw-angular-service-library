@@ -72,8 +72,8 @@ export class HttpJsonClientService {
 			);
 	}
 
-	public post<T>(url: string, body: any): Observable<T> {
-		return this.http.post<any>(url, body, httpOptions).pipe(
+	public post(url: string, body: unknown): Observable<unknown> {
+		return this.http.post(url, body, httpOptions).pipe(
 			// catchError((error: any) => this.handleError('POST', url, error))
 			catchError((error: HttpErrorResponse) =>
 				this.handleError('POST', url, error)
@@ -81,9 +81,9 @@ export class HttpJsonClientService {
 		);
 	}
 
-	public put<T>(url: string, body: any): Observable<T> {
+	public put(url: string, body: unknown): Observable<unknown> {
 		return this.http
-			.put<any>(url, body, httpOptions)
+			.put(url, body, httpOptions)
 			.pipe(
 				catchError((error: HttpErrorResponse) =>
 					this.handleError('PUT', url, error)
@@ -91,9 +91,9 @@ export class HttpJsonClientService {
 			);
 	}
 
-	public patch<T>(url: string, body: any): Observable<T> {
+	public patch(url: string, body: unknown): Observable<unknown> {
 		return this.http
-			.patch<any>(url, body, httpOptions)
+			.patch(url, body, httpOptions)
 			.pipe(
 				catchError((error: HttpErrorResponse) =>
 					this.handleError('PATCH', url, error)
