@@ -1,24 +1,31 @@
-sudo: false
 language: node_js
+os:
+  - linux
+  - osx
+  - windows
+dist: xenial
 node_js:
-  - node
-addons:
-  chrome: stable
+  - 'lts/*'
+services:
+  - xvfb
 branches:
   only:
     - master
 cache:
   directories:
     - node_modules
-before_install:
-  - npm update
 install:
+  - npm set progress=false
   - npm install
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - export DISPLAY=:99.0
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter && chmod +x ./cc-test-reporter && ./cc-test-reporter before-build ; fi
 script:
-  - npm run travis
+  - npm run prettier-check
+  - npm run lint
+  - npm run ng-lint
+  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run build-electron-main ; fi
+  - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run unit-tests ; fi
+# - if [ "$TRAVIS_OS_NAME" != "windows" ]; then npm run e2e ; fi
 after_script:
-  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT ; fi

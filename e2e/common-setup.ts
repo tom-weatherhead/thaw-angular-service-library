@@ -1,9 +1,11 @@
+import { join } from 'path';
+import * as electron from 'electron';
 import { Application } from 'spectron';
-
-import * as path from 'path';
 
 export default function setup(): void {
 	beforeEach(async function () {
+		const electronPath = electron.toString();
+
 		this.app = new Application({
 			path: path.join(
 				__dirname,
@@ -11,7 +13,7 @@ export default function setup(): void {
 			),
 			// The following line tells spectron to look and use the main.js file
 			// and the package.json located 1 level above.
-			args: [path.join(__dirname, '..')],
+			args: [join(__dirname, '..')],
 			webdriverOptions: {}
 		});
 
