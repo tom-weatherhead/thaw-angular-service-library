@@ -4,6 +4,7 @@
 	"description": "Services for Angular applications",
 	"keywords": [
 		"Angular",
+		"service",
 		"TypeScript"
 	],
 	"private": false,
