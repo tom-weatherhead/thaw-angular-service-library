@@ -6,17 +6,21 @@ import commonSetup from './common-setup';
 describe('angular-electron App', () => {
 	commonSetup.apply(this);
 
+	// if (typeof this !== 'undefined') {
+	// 	this.timeout(10000);
+	// }
+
 	let client: SpectronClient;
-	let originalTimeout: number;
+	// let originalTimeout: number;
 
 	beforeEach(function () {
 		client = this.app.client;
-		originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		// originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
 	});
 
-	afterEach(() => {
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
-	});
+	// afterEach(() => {
+	// 	jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+	// });
 
 	it('Creates initial app window', async () => {
 		const count = await client.getWindowCount();

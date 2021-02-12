@@ -5,7 +5,8 @@
 		"outDir": "../out-tsc/e2e",
 		"target": "es5",
 		"types": [
-			"jasmine",
+			"chai",
+			"mocha",
 			"node"
 		]
 	},
