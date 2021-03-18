@@ -1,6 +1,6 @@
 {
 	"name": "thaw-angular-service-library",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Services for Angular applications",
 	"keywords": [
 		"Angular",
@@ -51,7 +51,8 @@
 		"test": "npm run unit-tests",
 		"build-and-test": "npm run pre-build-tests && npm run clean-build-products && npm run build-electron-main && npm test",
 		"start": "npm run build:dev && npm run electron",
-		"all": "npm run reinstall-packages && npm run build-and-test && npm start",
+		"// all": "npm run reinstall-packages && npm run build-and-test && npm start",
+		"all": "npm run reinstall-packages && npm run build-and-test",
 		"f": "npm run prettier-format && npm run all",
 		"re": "npm run prettier-format && npm run build-and-test && npm start",
 		"// gen-module": "ng generate module",
